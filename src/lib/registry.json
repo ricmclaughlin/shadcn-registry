@@ -12,6 +12,18 @@
   },
   "items": [
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A versatile badge component for displaying status, tags, and notifications.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/badge.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",

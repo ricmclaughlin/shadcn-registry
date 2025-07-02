@@ -1,14 +1,15 @@
 {
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "card",
   "type": "registry:ui",
-  "description": "A flexible card container component with header, content, and footer sections.",
+  "description": "A flexible card container component with header, content, and footer sections. Based on shadcn-svelte Card component: https://www.shadcn-svelte.com/docs/components/card",
   "dependencies": [
     "clsx"
   ],
   "files": [
     {
       "name": "card.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<div class={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)} {...$$restProps}>\n\t<slot />\n</div>\n"
+      "content": "<!-- Based on shadcn-svelte Card component: https://www.shadcn-svelte.com/docs/components/card -->\n<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<div class={cn('rounded-lg border bg-card text-card-foreground shadow-sm', className)} {...$$restProps}>\n\t<slot />\n</div>\n"
     },
     {
       "name": "card-header.svelte",

@@ -1,3 +1,4 @@
+<!-- Based on shadcn-svelte Input component: https://www.shadcn-svelte.com/docs/components/input -->
 <script lang="ts">
 	import { cn } from '$lib/utils';
 

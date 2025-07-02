@@ -5,6 +5,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '$lib/components/ui/card';
 	import { Input, Label } from '$lib/components/ui/input';
+	import { Badge, badgeVariants } from '$lib/components/ui/badge';
 	
 	let currentTheme = 'default';
 	let loading = false;
@@ -112,6 +113,69 @@
 
 		<!-- Component Examples -->
 		<div class="space-y-12">
+			<!-- Badge Component Showcase -->
+			<section>
+				<Card>
+					<CardHeader>
+						<CardTitle>Badge Component</CardTitle>
+						<CardDescription>
+							Versatile badge for displaying status, tags, and notifications. Based on shadcn-svelte Badge component. Install with:
+							<code class="text-xs bg-muted px-2 py-1 rounded font-mono ml-2">
+								npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json
+							</code>
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<!-- Badge Variants -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Variants</h3>
+							<div class="flex flex-wrap gap-3">
+								<Badge variant="default">Default</Badge>
+								<Badge variant="secondary">Secondary</Badge>
+								<Badge variant="destructive">Destructive</Badge>
+								<Badge variant="outline">Outline</Badge>
+							</div>
+						</div>
+
+						<!-- Badge Use Cases -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Common Use Cases</h3>
+							<div class="space-y-4">
+								<div class="flex items-center gap-2">
+									<span class="text-sm">Status indicators:</span>
+									<Badge variant="default">Active</Badge>
+									<Badge variant="secondary">Pending</Badge>
+									<Badge variant="destructive">Error</Badge>
+								</div>
+								
+								<div class="flex items-center gap-2">
+									<span class="text-sm">Tags:</span>
+									<Badge variant="outline">React</Badge>
+									<Badge variant="outline">TypeScript</Badge>
+									<Badge variant="outline">Svelte</Badge>
+								</div>
+								
+								<div class="flex items-center gap-2">
+									<span class="text-sm">Notifications:</span>
+									<Badge variant="destructive">3</Badge>
+									<Badge variant="default">12</Badge>
+									<Badge variant="secondary">New</Badge>
+								</div>
+							</div>
+						</div>
+
+						<!-- Badge as Link -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Badge as Link</h3>
+							<div class="flex flex-wrap gap-3">
+								<a href="#" class={badgeVariants({ variant: 'default' })}>Link Badge</a>
+								<a href="#" class={badgeVariants({ variant: 'outline' })}>Outline Link</a>
+								<a href="#" class={badgeVariants({ variant: 'secondary' })}>Secondary Link</a>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
 			<!-- Buttons Section -->
 			<section>
 				<Card>
@@ -392,21 +456,27 @@
 							<h3 class="text-lg font-medium mb-3">Install Individual Components</h3>
 							<div class="space-y-3">
 								<div>
+									<p class="text-sm text-muted-foreground mb-2">Badge Component:</p>
+									<code class="block bg-muted p-3 rounded text-sm font-mono">
+										npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json
+									</code>
+								</div>
+								<div>
 									<p class="text-sm text-muted-foreground mb-2">Button Component:</p>
 									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn@canary add {registryBaseUrl}/r/button.json
+										npx shadcn-svelte@latest add {registryBaseUrl}/r/button.json
 									</code>
 								</div>
 								<div>
 									<p class="text-sm text-muted-foreground mb-2">Card Component:</p>
 									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn@canary add {registryBaseUrl}/r/card.json
+										npx shadcn-svelte@latest add {registryBaseUrl}/r/card.json
 									</code>
 								</div>
 								<div>
 									<p class="text-sm text-muted-foreground mb-2">Input Component:</p>
 									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn@canary add {registryBaseUrl}/r/input.json
+										npx shadcn-svelte@latest add {registryBaseUrl}/r/input.json
 									</code>
 								</div>
 							</div>
@@ -415,13 +485,23 @@
 						<div>
 							<h3 class="text-lg font-medium mb-3">Install All Foundation Components</h3>
 							<code class="block bg-muted p-3 rounded text-sm font-mono">
-								npx shadcn@canary add {registryBaseUrl}/r/button.json {registryBaseUrl}/r/card.json {registryBaseUrl}/r/input.json
+								npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json {registryBaseUrl}/r/button.json {registryBaseUrl}/r/card.json {registryBaseUrl}/r/input.json
 							</code>
 						</div>
 
 						<div>
 							<h3 class="text-lg font-medium mb-3">Usage Examples</h3>
 							<div class="space-y-4">
+								<div>
+									<p class="text-sm text-muted-foreground mb-2">Import and use Badge:</p>
+									<code class="block bg-muted p-3 rounded text-sm font-mono">
+										import &#123; Badge, badgeVariants &#125; from '$lib/components/ui/badge';<br/>
+										<br/>
+										&lt;Badge variant="default"&gt;Status&lt;/Badge&gt;<br/>
+										&lt;Badge variant="outline"&gt;Tag&lt;/Badge&gt;<br/>
+										&lt;a href="/link" class=&#123;badgeVariants(&#123; variant: "outline" &#125;)&#125;&gt;Link Badge&lt;/a&gt;
+									</code>
+								</div>
 								<div>
 									<p class="text-sm text-muted-foreground mb-2">Import and use Button:</p>
 									<code class="block bg-muted p-3 rounded text-sm font-mono">

@@ -1,3 +1,4 @@
+<!-- Based on shadcn-svelte Card component: https://www.shadcn-svelte.com/docs/components/card -->
 <script lang="ts">
 	import { cn } from '$lib/utils';
 

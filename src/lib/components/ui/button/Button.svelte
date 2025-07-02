@@ -1,3 +1,4 @@
+<!-- Based on shadcn-svelte Button component: https://www.shadcn-svelte.com/docs/components/button -->
 <script lang="ts">
 	import { tv, type VariantProps } from 'tailwind-variants';
 	import { cn } from '$lib/utils';

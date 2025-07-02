@@ -1,14 +1,15 @@
 {
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
   "name": "input",
   "type": "registry:ui",
-  "description": "A flexible input component with support for various types and states.",
+  "description": "A flexible input component with support for various types and states. Based on shadcn-svelte Input component: https://www.shadcn-svelte.com/docs/components/input",
   "dependencies": [
     "clsx"
   ],
   "files": [
     {
       "name": "input.svelte",
-      "content": "<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\texport let type: string = 'text';\n\texport let value: string | number | undefined = undefined;\n\texport let placeholder: string = '';\n\texport let disabled: boolean = false;\n\texport let readonly: boolean = false;\n\texport let required: boolean = false;\n\texport let id: string | undefined = undefined;\n\texport let name: string | undefined = undefined;\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<input\n\t{type}\n\t{id}\n\t{name}\n\t{placeholder}\n\t{disabled}\n\t{readonly}\n\t{required}\n\tbind:value\n\tclass={cn(\n\t\t'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:focusin\n\ton:focusout\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
+      "content": "<!-- Based on shadcn-svelte Input component: https://www.shadcn-svelte.com/docs/components/input -->\n<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\texport let type: string = 'text';\n\texport let value: string | number | undefined = undefined;\n\texport let placeholder: string = '';\n\texport let disabled: boolean = false;\n\texport let readonly: boolean = false;\n\texport let required: boolean = false;\n\texport let id: string | undefined = undefined;\n\texport let name: string | undefined = undefined;\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<input\n\t{type}\n\t{id}\n\t{name}\n\t{placeholder}\n\t{disabled}\n\t{readonly}\n\t{required}\n\tbind:value\n\tclass={cn(\n\t\t'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',\n\t\tclassName\n\t)}\n\t{...$$restProps}\n\ton:blur\n\ton:change\n\ton:click\n\ton:focus\n\ton:focusin\n\ton:focusout\n\ton:keydown\n\ton:keypress\n\ton:keyup\n\ton:mouseover\n\ton:mouseenter\n\ton:mouseleave\n\ton:paste\n\ton:input\n/>\n"
     },
     {
       "name": "label.svelte",
