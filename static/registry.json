@@ -1,0 +1,135 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry.json",
+  "name": "shadcn-svelte-themes",
+  "homepage": "https://your-registry.com",
+  "description": "A collection of themed shadcn-svelte components with multiple style variants",
+  "aliases": {
+    "lib": "$lib",
+    "ui": "$lib/components/ui",
+    "components": "$lib/components",
+    "utils": "$lib/utils",
+    "hooks": "$lib/hooks"
+  },
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A versatile button component with multiple variants, sizes, and states.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/button.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A flexible card container component with header, content, and footer sections.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/card.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A flexible input component with support for various types and states.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/input.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "material-theme",
+      "type": "registry:theme",
+      "title": "Material Theme",
+      "description": "Material Design inspired theme with rounded corners and vibrant colors",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/material.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "minimal-theme",
+      "type": "registry:theme",
+      "title": "Minimal Theme",
+      "description": "Clean, minimal theme with subtle colors and sharp edges",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/minimal.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "corporate-theme",
+      "type": "registry:theme",
+      "title": "Corporate Theme",
+      "description": "Professional corporate theme with conservative colors",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/corporate.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "twitter-theme",
+      "type": "registry:theme",
+      "title": "Twitter Theme",
+      "description": "A theme inspired by Twitter's design with rounded corners and blue accents",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/twitter.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "bubblegum-theme",
+      "type": "registry:theme",
+      "title": "Bubblegum Theme",
+      "description": "A playful theme with pink and pastel colors inspired by bubblegum",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/bubblegum.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "catppuccin-theme",
+      "type": "registry:theme",
+      "title": "Catppuccin Theme",
+      "description": "A soothing pastel theme inspired by the popular Catppuccin color palette",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/catppuccin.json",
+          "type": "registry:theme"
+        }
+      ]
+    },
+    {
+      "name": "graphite-theme",
+      "type": "registry:theme",
+      "title": "Graphite Theme",
+      "description": "A sleek monochromatic theme with subtle grays and clean aesthetics",
+      "files": [
+        {
+          "path": "src/lib/registry/themes/graphite.json",
+          "type": "registry:theme"
+        }
+      ]
+    }
+  ]
+}
