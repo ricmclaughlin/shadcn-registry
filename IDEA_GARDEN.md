@@ -2,10 +2,12 @@
 - how does the ZOD help the component registry?
 
 ## components
-- [ ] shadcn-svelte icons
-
+- [ X ] dark mode component
+- [ X ] tab component
+- [ X ] bread crumb component
 - data table
-- 
+- page layout - paneforge
+## icons gallery
 
 ## page skeletons
 
@@ -19,7 +21,7 @@
 - [ ] each theme card shows up in the theme referenced by the card
 
 ## Overall improvements
-- dark mode
+- [ X] dark mode preview
 - 
 
 ## component detail page

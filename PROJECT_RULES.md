@@ -98,8 +98,18 @@ src/lib/components/ui/[component]/
 
 ## 🚀 Workflow Shortcuts
 
+### **Implementation Control Rule** 🛑
+**CRITICAL**: Do not create, modify, or implement any files, components, or code unless the user explicitly uses the exact word string "IMPLEMENT" in their request. This includes:
+- Creating new files
+- Modifying existing files  
+- Writing code examples that would be saved
+- Running build scripts
+- Making any changes to the project structure
+
+**Exception**: Reading files, analyzing code, and providing guidance/suggestions is always allowed.
+
 ### **Quick Component Creation**
-When I say "create [component]", automatically:
+When I say "create [component]" AND use "IMPLEMENT", automatically:
 1. Create registry JSON with proper structure
 2. Create UI component files with TypeScript
 3. Add to main registry.json

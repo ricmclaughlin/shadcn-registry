@@ -210,9 +210,46 @@ Add after existing component sections:
 </section>
 ```
 
-## ✅ **Step 6: Quality Assurance**
+## ✅ **Step 6: Testing & Validation**
 
-### **6.1 Testing Checklist**
+### **6.1 Component Test Implementation** (using COMPONENT_TEST_SPEC.md)
+
+**Add Test Attributes to Component:**
+```svelte
+<button 
+  class={cn(buttonVariants({ variant, size }), className)}
+  data-testid="[component-name]"
+  data-variant={variant}
+  data-state={disabled ? 'disabled' : 'enabled'}
+  data-loading={loading}
+  {...$$restProps}
+>
+```
+
+**Create Component Test File:**
+- [ ] Create `tests/components/[component-name].spec.ts`
+- [ ] Copy the 4-test template from COMPONENT_TEST_SPEC.md
+- [ ] Replace `[Component]` and `[component-name]` placeholders
+- [ ] Adjust variant names to match your component
+
+**Run Component Tests:**
+```bash
+# Run your component tests
+npm run test:components -- --grep "[Component]"
+
+# Expected results: 12 tests passed, 12 tests skipped
+# Execution time: Under 15 seconds
+```
+
+**Test Validation Checklist:**
+- [ ] All 4 core tests pass across 6 browsers/devices
+- [ ] Component renders with correct variants
+- [ ] Interactions work correctly (click, focus, keyboard)
+- [ ] States behave correctly (disabled, loading)
+- [ ] Theme consistency maintained across theme changes
+- [ ] No test timeouts or flaky behavior
+
+### **6.2 Manual Testing Checklist**
 - [ ] Component renders without errors
 - [ ] All variants/sizes work correctly
 - [ ] Theme switching works properly
@@ -221,7 +258,7 @@ Add after existing component sections:
 - [ ] Navigation links work correctly
 - [ ] No console errors or warnings
 
-### **6.2 Documentation Checklist**
+### **6.3 Documentation Checklist**
 - [ ] All required imports are present
 - [ ] SEO head tags are configured
 - [ ] Breadcrumb navigation uses Breadcrumb component
@@ -232,13 +269,14 @@ Add after existing component sections:
 - [ ] API tab has complete props documentation
 - [ ] Component is linked from main components page
 
-### **6.3 Code Quality Checklist**
+### **6.4 Code Quality Checklist**
 - [ ] Uses Svelte 5 runes syntax throughout
 - [ ] Proper TypeScript types
 - [ ] Consistent styling with existing components
 - [ ] Accessibility attributes included
 - [ ] Semantic HTML structure
 - [ ] Error handling where appropriate
+- [ ] Required test attributes added for testing
 
 ## 🚀 **Step 7: Final Steps**
 
@@ -277,6 +315,8 @@ npx shadcn-svelte@latest add http://localhost:5173/r/[component-name].json
 
 A component is considered complete when:
 - [ ] ✅ Component works in isolation
+- [ ] ✅ **Component tests pass** (12 passed, 12 skipped across 6 browsers)
+- [ ] ✅ **Test attributes added** (data-testid, data-variant, data-state)
 - [ ] ✅ Registry installation works via CLI
 - [ ] ✅ Detail page follows guidelines exactly
 - [ ] ✅ Components page integration works
@@ -296,6 +336,15 @@ npm run registry:build
 
 # Test component installation
 npx shadcn-svelte@latest add http://localhost:5173/r/[component-name].json
+
+# Run component tests
+npm run test:components -- --grep "[Component]"
+
+# Run all component tests
+npm run test:components
+
+# Run tests with UI mode for debugging
+npm run test:ui
 ```
 
 ---
