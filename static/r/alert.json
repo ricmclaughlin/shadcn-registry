@@ -1,0 +1,46 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "description": "A flexible alert component for displaying important messages with icon support. Based on shadcn-svelte Alert component: https://www.shadcn-svelte.com/docs/components/alert",
+  "dependencies": [
+    "tailwind-variants",
+    "clsx",
+    "@lucide/svelte"
+  ],
+  "files": [
+    {
+      "name": "alert.svelte",
+      "content": "<!-- Based on shadcn-svelte Alert component: https://www.shadcn-svelte.com/docs/components/alert -->\n<script lang=\"ts\">\n\timport { tv, type VariantProps } from 'tailwind-variants';\n\timport { cn } from '$lib/utils';\n\timport type { ComponentType } from 'svelte';\n\n\tconst alertVariants = tv({\n\t\tbase: 'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',\n\t\tvariants: {\n\t\t\tvariant: {\n\t\t\t\tdefault: 'bg-background text-foreground',\n\t\t\t\tdestructive: 'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive'\n\t\t\t}\n\t\t},\n\t\tdefaultVariants: {\n\t\t\tvariant: 'default'\n\t\t}\n\t});\n\n\ttype Variant = VariantProps<typeof alertVariants>['variant'];\n\n\texport let variant: Variant = 'default';\n\texport let icon: ComponentType | undefined = undefined;\n\n\t// Additional classes\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<div class={cn(alertVariants({ variant }), className)} role=\"alert\" {...$$restProps}>\n\t{#if icon}\n\t\t<svelte:component this={icon} class=\"h-4 w-4\" />\n\t{/if}\n\t<slot />\n</div>"
+    },
+    {
+      "name": "alert-title.svelte",
+      "content": "<!-- Based on shadcn-svelte Alert component: https://www.shadcn-svelte.com/docs/components/alert -->\n<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<h5 class={cn('mb-1 font-medium leading-none tracking-tight', className)} {...$$restProps}>\n\t<slot />\n</h5>"
+    },
+    {
+      "name": "alert-description.svelte",
+      "content": "<!-- Based on shadcn-svelte Alert component: https://www.shadcn-svelte.com/docs/components/alert -->\n<script lang=\"ts\">\n\timport { cn } from '$lib/utils';\n\n\tlet className: string = '';\n\texport { className as class };\n</script>\n\n<div class={cn('text-sm [&_p]:leading-relaxed', className)} {...$$restProps}>\n\t<slot />\n</div>"
+    },
+    {
+      "name": "index.ts",
+      "content": "import Alert from './alert.svelte';\nimport AlertTitle from './alert-title.svelte';\nimport AlertDescription from './alert-description.svelte';\n\nexport {\n\tAlert,\n\tAlert as default,\n\tAlertTitle,\n\tAlertDescription\n};\nexport type { VariantProps } from 'tailwind-variants';\n"
+    }
+  ],
+  "tailwind": {
+    "config": {
+      "theme": {
+        "extend": {
+          "colors": {
+            "border": "hsl(var(--border))",
+            "background": "hsl(var(--background))",
+            "foreground": "hsl(var(--foreground))",
+            "destructive": {
+              "DEFAULT": "hsl(var(--destructive))",
+              "foreground": "hsl(var(--destructive-foreground))"
+            }
+          }
+        }
+      }
+    }
+  }
+}

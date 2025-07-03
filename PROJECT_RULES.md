@@ -206,6 +206,105 @@ import { Component } from '$lib/components/ui/component';
 
 ---
 
+## 🎨 Icon Integration Standards
+
+### **Icon Library: @lucide/svelte**
+Following shadcn-svelte's standard, we use `@lucide/svelte` as our primary icon library.
+
+#### **Deep Import Pattern** (Performance Critical)
+```svelte
+// ✅ CORRECT - Deep imports for performance
+import InfoIcon from '@lucide/svelte/icons/info';
+import AlertTriangleIcon from '@lucide/svelte/icons/alert-triangle';
+import DownloadIcon from '@lucide/svelte/icons/download';
+
+// ❌ AVOID - Named imports hurt dev server performance
+import { Info, AlertTriangle, Download } from '@lucide/svelte';
+```
+
+#### **Component Icon Integration**
+```svelte
+<!-- Button with icons -->
+<Button icon={DownloadIcon}>Download</Button>
+<Button size="icon" icon={PlusIcon} />
+<Button icon={SettingsIcon} iconPlacement="right">Settings</Button>
+
+<!-- Alert with icons -->
+<Alert variant="default" icon={InfoIcon}>
+  <AlertTitle>Information</AlertTitle>
+  <AlertDescription>Message content</AlertDescription>
+</Alert>
+```
+
+### **Icon Component Standards**
+
+#### **Icon Props Pattern**
+```typescript
+// Standard icon prop
+export let icon: ComponentType | undefined = undefined;
+
+// Icon placement for buttons
+export let iconPlacement: 'left' | 'right' = 'left';
+```
+
+#### **Icon Rendering Pattern**
+```svelte
+{#if icon}
+  <svelte:component this={icon} class="h-4 w-4" />
+{/if}
+```
+
+#### **Icon Sizing Standards**
+- **Default**: `h-4 w-4` (16px)
+- **Small**: `h-3 w-3` (12px) 
+- **Large**: `h-5 w-5` (20px)
+- **Icon buttons**: `h-4 w-4` with proper spacing
+
+### **Registry Dependencies**
+Components using icons must include `@lucide/svelte` in dependencies:
+```json
+{
+  "dependencies": [
+    "tailwind-variants",
+    "clsx",
+    "@lucide/svelte"
+  ]
+}
+```
+
+### **Icon Selection Guidelines**
+
+#### **Alert Icons**
+- **Info**: `info` - General information
+- **Warning**: `alert-triangle` - Warnings and cautions
+- **Success**: `check-circle` - Success states
+- **Error**: `x-circle` - Error states
+
+#### **Button Icons**
+- **Actions**: `download`, `upload`, `plus`, `minus`
+- **Navigation**: `arrow-left`, `arrow-right`, `chevron-down`
+- **Interface**: `settings`, `search`, `menu`, `x`
+
+#### **Common Icons**
+- **User**: `user`, `users`, `user-plus`
+- **Files**: `file`, `folder`, `image`, `download`
+- **Interface**: `home`, `settings`, `search`, `menu`
+
+### **Performance Best Practices**
+1. **Always use deep imports** from `@lucide/svelte/icons/[icon-name]`
+2. **Import only needed icons** - avoid importing entire icon sets
+3. **Consistent sizing** - use standard size classes
+4. **Proper spacing** - follow component spacing patterns
+
+### **Theme Integration**
+Icons automatically inherit theme colors through:
+- `text-foreground` - Default text color
+- `text-destructive` - Error/warning states  
+- `text-muted-foreground` - Secondary text
+- Component-specific color classes
+
+---
+
 ## 🔄 Component Sync Protocol
 
 ### **Monitoring shadcn-svelte Updates**
@@ -242,10 +341,19 @@ If shadcn-svelte makes breaking changes:
 ## 🎯 Current Status Reminders
 
 ### **Completed Components**
+- ✅ Alert (2 variants, icon support, perfect theme integration)
 - ✅ Badge (4 variants, perfect theme integration, badgeVariants helper)
-- ✅ Button (6 variants, 4 sizes, loading states)
+- ✅ Button (6 variants, 4 sizes, loading states, icon support with placement)
 - ✅ Card (complete family with sub-components)
 - ✅ Input (with Label, all input types and states)
+
+### **Icon Integration Status**
+- ✅ Deep import pattern established (@lucide/svelte/icons/[name])
+- ✅ Button component: icon prop, iconPlacement, icon-only support
+- ✅ Alert component: icon prop with proper positioning
+- ✅ Performance optimized: No named imports, only deep imports
+- ✅ Theme integration: Icons inherit component colors
+- ✅ Registry dependencies: @lucide/svelte added to icon components
 
 ### **Registry Compatibility Status**
 - ✅ Schema references match shadcn-svelte exactly
@@ -253,6 +361,7 @@ If shadcn-svelte makes breaking changes:
 - ✅ Component APIs match shadcn-svelte patterns
 - ✅ Attribution links to official components
 - ✅ File structure follows their conventions
+- ✅ Icon patterns match their performance optimizations
 
 ### **Next Priorities**
 1. 🎯 Badge Component (quick win, high visual impact)

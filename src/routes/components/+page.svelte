@@ -6,6 +6,20 @@
 	import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '$lib/components/ui/card';
 	import { Input, Label } from '$lib/components/ui/input';
 	import { Badge, badgeVariants } from '$lib/components/ui/badge';
+	import { Alert, AlertTitle, AlertDescription } from '$lib/components/ui/alert';
+	import { ModeToggle } from '$lib/components/ui/mode-toggle';
+	import * as Tabs from '$lib/components/ui/tabs';
+	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
+	
+	// Icon imports using deep import pattern for performance
+	import DownloadIcon from '@lucide/svelte/icons/download';
+	import PlusIcon from '@lucide/svelte/icons/plus';
+	import SearchIcon from '@lucide/svelte/icons/search';
+	import SettingsIcon from '@lucide/svelte/icons/settings';
+	import InfoIcon from '@lucide/svelte/icons/info';
+	import AlertTriangleIcon from '@lucide/svelte/icons/alert-triangle';
+	import CheckCircleIcon from '@lucide/svelte/icons/check-circle';
+	import XCircleIcon from '@lucide/svelte/icons/x-circle';
 	
 	let currentTheme = 'default';
 	let loading = false;
@@ -45,7 +59,7 @@
 </script>
 
 <svelte:head>
-	<title>Components - shadcn-svelte Themed Registry</title>
+	<title>Components - UI Registry</title>
 </svelte:head>
 
 <div class="min-h-screen bg-background">
@@ -55,7 +69,7 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center space-x-4">
 					<a href="{base}/" class="text-2xl font-bold text-foreground hover:text-primary transition-colors">
-						shadcn-svelte
+						UI Registry
 					</a>
 					<nav class="hidden md:flex space-x-6">
 						<a href="{base}/" class="text-muted-foreground hover:text-foreground transition-colors">Home</a>
@@ -65,17 +79,20 @@
 				</div>
 				
 				<!-- Theme Switcher -->
-				<div class="flex items-center space-x-2">
-					<span class="text-sm text-muted-foreground">Theme:</span>
-					<select 
-						bind:value={currentTheme} 
-						on:change={(e) => switchTheme(e.target.value)}
-						class="px-3 py-1 text-sm border border-border rounded-md bg-background text-foreground"
-					>
-						{#each themes as theme}
-							<option value={theme.id}>{theme.name}</option>
-						{/each}
-					</select>
+				<div class="flex items-center space-x-4">
+					<div class="flex items-center space-x-2">
+						<span class="text-sm text-muted-foreground">Theme:</span>
+						<select 
+							bind:value={currentTheme} 
+							on:change={(e) => switchTheme(e.target.value)}
+							class="px-3 py-1 text-sm border border-border rounded-md bg-background text-foreground"
+						>
+							{#each themes as theme}
+								<option value={theme.id}>{theme.name}</option>
+							{/each}
+						</select>
+					</div>
+					<ModeToggle />
 				</div>
 			</div>
 		</div>
@@ -113,16 +130,269 @@
 
 		<!-- Component Examples -->
 		<div class="space-y-12">
+			<!-- Alert Component Showcase -->
+			<section>
+				<Card>
+					<CardHeader>
+						<a href="{base}/components/alert" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Alert Component</CardTitle>
+						</a>
+						<CardDescription>
+							Flexible alert for displaying important messages with icon support.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<!-- Alert Variants -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Alert Types with Icons</h3>
+							<div class="space-y-4">
+								<Alert variant="default" icon={InfoIcon}>
+									<AlertTitle>Information</AlertTitle>
+									<AlertDescription>
+										This is an informational alert using the default variant with an info icon.
+									</AlertDescription>
+								</Alert>
+								
+								<Alert variant="destructive" icon={AlertTriangleIcon}>
+									<AlertTitle>Warning</AlertTitle>
+									<AlertDescription>
+										This is a warning alert using the destructive variant with a warning icon.
+									</AlertDescription>
+								</Alert>
+							</div>
+						</div>
+
+						<!-- Alert Without Icons -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Alerts Without Icons</h3>
+							<div class="space-y-4">
+								<Alert variant="default">
+									<AlertTitle>Heads up!</AlertTitle>
+									<AlertDescription>
+										You can add components to your app using the CLI. This alert has no icon.
+									</AlertDescription>
+								</Alert>
+								
+								<Alert variant="destructive">
+									<AlertTitle>Error</AlertTitle>
+									<AlertDescription>
+										Your session has expired. Please log in again. This destructive alert has no icon.
+									</AlertDescription>
+								</Alert>
+							</div>
+						</div>
+
+						<!-- Custom Alert Examples -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Custom Alert Examples</h3>
+							<div class="space-y-4">
+								<Alert variant="default" icon={CheckCircleIcon} class="border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200">
+									<AlertTitle>Success</AlertTitle>
+									<AlertDescription>
+										Your changes have been saved successfully! Custom styling with green colors.
+									</AlertDescription>
+								</Alert>
+								
+								<Alert variant="default" icon={XCircleIcon} class="border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200">
+									<AlertTitle>Error</AlertTitle>
+									<AlertDescription>
+										Something went wrong. Please try again later. Custom styling with red colors.
+									</AlertDescription>
+								</Alert>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
+			
+			<!-- Mode Toggle Component Showcase -->
+			<section>
+				<Card>
+					<CardHeader>
+						<a href="{base}/components/mode-toggle" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Mode Toggle Component</CardTitle>
+						</a>
+						<CardDescription>
+							A toggle component for switching between light and dark modes with smooth animations.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<!-- Mode Toggle Example -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Mode Toggle</h3>
+							<div class="flex items-center space-x-4">
+								<ModeToggle />
+								<span class="text-sm text-muted-foreground">Click to toggle between light and dark modes</span>
+							</div>
+						</div>
+						
+						<!-- Installation Instructions -->
+						<div class="bg-muted p-4 rounded-lg">
+							<h4 class="font-medium mb-2">Installation & Usage</h4>
+							<div class="space-y-2 text-sm">
+								<p>1. Install the mode-watcher dependency:</p>
+								<code class="block bg-background p-2 rounded font-mono text-xs">npm install mode-watcher</code>
+								<p>2. Add ModeWatcher to your root layout:</p>
+								<code class="block bg-background p-2 rounded font-mono text-xs">import &#123; ModeWatcher &#125; from 'mode-watcher';</code>
+								<p>3. Use the ModeToggle component anywhere in your app</p>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
+			
+			<!-- Tabs Component Showcase -->
+			<section>
+				<Card>
+					<CardHeader>
+						<a href="{base}/components/tabs" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Tabs Component</CardTitle>
+						</a>
+						<CardDescription>
+							A set of layered sections of content—known as tab panels—that are displayed one at a time.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<!-- Tabs Example -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Basic Tabs</h3>
+							<Tabs.Root value="overview" class="w-full max-w-md">
+								<Tabs.List>
+									<Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+									<Tabs.Trigger value="details">Details</Tabs.Trigger>
+									<Tabs.Trigger value="settings">Settings</Tabs.Trigger>
+								</Tabs.List>
+								<Tabs.Content value="overview">
+									<div class="p-4 border rounded-md bg-muted/30">
+										<h4 class="font-medium mb-2">Overview</h4>
+										<p class="text-sm text-muted-foreground">
+											This is the overview tab content. Perfect for displaying summary information.
+										</p>
+									</div>
+								</Tabs.Content>
+								<Tabs.Content value="details">
+									<div class="p-4 border rounded-md bg-muted/30">
+										<h4 class="font-medium mb-2">Details</h4>
+										<p class="text-sm text-muted-foreground">
+											Detailed information goes here. Great for comprehensive data display.
+										</p>
+									</div>
+								</Tabs.Content>
+								<Tabs.Content value="settings">
+									<div class="p-4 border rounded-md bg-muted/30">
+										<h4 class="font-medium mb-2">Settings</h4>
+										<p class="text-sm text-muted-foreground">
+											Configuration options and preferences can be organized here.
+										</p>
+									</div>
+								</Tabs.Content>
+							</Tabs.Root>
+						</div>
+
+						<!-- Tabs with Different Content -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Tabs with Components</h3>
+							<Tabs.Root value="buttons" class="w-full max-w-md">
+								<Tabs.List>
+									<Tabs.Trigger value="buttons">Buttons</Tabs.Trigger>
+									<Tabs.Trigger value="badges">Badges</Tabs.Trigger>
+								</Tabs.List>
+								<Tabs.Content value="buttons">
+									<div class="p-4 border rounded-md space-y-3">
+										<div class="flex gap-2">
+											<Button size="sm">Small</Button>
+											<Button>Default</Button>
+											<Button variant="outline">Outline</Button>
+										</div>
+									</div>
+								</Tabs.Content>
+								<Tabs.Content value="badges">
+									<div class="p-4 border rounded-md">
+										<div class="flex flex-wrap gap-2">
+											<Badge>Default</Badge>
+											<Badge variant="secondary">Secondary</Badge>
+											<Badge variant="outline">Outline</Badge>
+											<Badge variant="destructive">Destructive</Badge>
+										</div>
+									</div>
+								</Tabs.Content>
+							</Tabs.Root>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
+			
+			<!-- Breadcrumb Component Showcase -->
+			<section>
+				<Card>
+					<CardHeader>
+						<a href="{base}/components/breadcrumb" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Breadcrumb Component</CardTitle>
+						</a>
+						<CardDescription>
+							Displays the path to the current resource using a hierarchy of links.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<!-- Basic Breadcrumb -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">Basic Navigation</h3>
+							<Breadcrumb.Root>
+								<Breadcrumb.List>
+									<Breadcrumb.Item>
+										<Breadcrumb.Link href="/">Home</Breadcrumb.Link>
+									</Breadcrumb.Item>
+									<Breadcrumb.Separator />
+									<Breadcrumb.Item>
+										<Breadcrumb.Link href="/components">Components</Breadcrumb.Link>
+									</Breadcrumb.Item>
+									<Breadcrumb.Separator />
+									<Breadcrumb.Item>
+										<Breadcrumb.Page>Breadcrumb</Breadcrumb.Page>
+									</Breadcrumb.Item>
+								</Breadcrumb.List>
+							</Breadcrumb.Root>
+						</div>
+
+						<!-- Breadcrumb with Icons -->
+						<div>
+							<h3 class="text-lg font-medium mb-3">With Icons</h3>
+							<Breadcrumb.Root>
+								<Breadcrumb.List>
+									<Breadcrumb.Item>
+										<Breadcrumb.Link href="/" class="flex items-center gap-2">
+											<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z"/>
+											</svg>
+											Dashboard
+										</Breadcrumb.Link>
+									</Breadcrumb.Item>
+									<Breadcrumb.Separator />
+									<Breadcrumb.Item>
+										<Breadcrumb.Page class="flex items-center gap-2">
+											<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+											</svg>
+											Settings
+										</Breadcrumb.Page>
+									</Breadcrumb.Item>
+								</Breadcrumb.List>
+							</Breadcrumb.Root>
+						</div>
+					</CardContent>
+				</Card>
+			</section>
+			
 			<!-- Badge Component Showcase -->
 			<section>
 				<Card>
 					<CardHeader>
-						<CardTitle>Badge Component</CardTitle>
+						<a href="{base}/components/badge" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Badge Component</CardTitle>
+						</a>
 						<CardDescription>
-							Versatile badge for displaying status, tags, and notifications. Based on shadcn-svelte Badge component. Install with:
-							<code class="text-xs bg-muted px-2 py-1 rounded font-mono ml-2">
-								npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json
-							</code>
+							Versatile badge for displaying status, tags, and notifications.
 						</CardDescription>
 					</CardHeader>
 					<CardContent class="space-y-6">
@@ -180,12 +450,11 @@
 			<section>
 				<Card>
 					<CardHeader>
-						<CardTitle>Button Component</CardTitle>
+						<a href="{base}/components/button" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Button Component</CardTitle>
+						</a>
 						<CardDescription>
-							Versatile button with multiple variants, sizes, and states. Install with:
-							<code class="text-xs bg-muted px-2 py-1 rounded font-mono ml-2">
-								npx shadcn@canary add {registryBaseUrl}/r/button.json
-							</code>
+							Versatile button with multiple variants, sizes, and states.
 						</CardDescription>
 					</CardHeader>
 					<CardContent class="space-y-6">
@@ -209,24 +478,17 @@
 								<Button size="sm">Small</Button>
 								<Button size="default">Default</Button>
 								<Button size="lg">Large</Button>
-								<Button size="icon">
-									<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-									</svg>
-								</Button>
 							</div>
 						</div>
 
-						<!-- Button States -->
+						<!-- Button with Icons -->
 						<div>
-							<h3 class="text-lg font-medium mb-3">States</h3>
+							<h3 class="text-lg font-medium mb-3">Buttons with Icons</h3>
 							<div class="flex flex-wrap gap-3">
-								<Button>Normal</Button>
-								<Button disabled>Disabled</Button>
-								<Button {loading} on:click={simulateLoading}>
-									{loading ? 'Loading...' : 'Click to Load'}
-								</Button>
-								<Button href="https://github.com">Link Button</Button>
+								<Button variant="default" icon={DownloadIcon}>Download</Button>
+								<Button variant="secondary" icon={PlusIcon}>Add Item</Button>
+								<Button variant="outline" icon={SearchIcon}>Search</Button>
+								<Button variant="ghost" icon={SettingsIcon} iconPlacement="right">Settings</Button>
 							</div>
 						</div>
 					</CardContent>
@@ -237,12 +499,11 @@
 			<section>
 				<Card>
 					<CardHeader>
-						<CardTitle>Card Component</CardTitle>
+						<a href="{base}/components/card" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Card Component</CardTitle>
+						</a>
 						<CardDescription>
-							Flexible container with header, content, and footer sections. Install with:
-							<code class="text-xs bg-muted px-2 py-1 rounded font-mono ml-2">
-								npx shadcn@canary add {registryBaseUrl}/r/card.json
-							</code>
+							Flexible container with header, content, and footer sections.
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
@@ -300,12 +561,11 @@
 			<section>
 				<Card>
 					<CardHeader>
-						<CardTitle>Input Component</CardTitle>
+						<a href="{base}/components/input" class="block hover:opacity-80 transition-opacity">
+							<CardTitle class="text-primary hover:underline">Input Component</CardTitle>
+						</a>
 						<CardDescription>
-							Flexible input with various types and states. Install with:
-							<code class="text-xs bg-muted px-2 py-1 rounded font-mono ml-2">
-								npx shadcn@canary add {registryBaseUrl}/r/input.json
-							</code>
+							Flexible input with various types and states.
 						</CardDescription>
 					</CardHeader>
 					<CardContent class="space-y-8">
@@ -442,102 +702,6 @@
 				</Card>
 			</section>
 
-			<!-- Installation Instructions -->
-			<section>
-				<Card>
-					<CardHeader>
-						<CardTitle>Installation & Usage</CardTitle>
-						<CardDescription>
-							How to add these foundation components to your project
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="space-y-6">
-						<div>
-							<h3 class="text-lg font-medium mb-3">Install Individual Components</h3>
-							<div class="space-y-3">
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Badge Component:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Button Component:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn-svelte@latest add {registryBaseUrl}/r/button.json
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Card Component:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn-svelte@latest add {registryBaseUrl}/r/card.json
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Input Component:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										npx shadcn-svelte@latest add {registryBaseUrl}/r/input.json
-									</code>
-								</div>
-							</div>
-						</div>
-						
-						<div>
-							<h3 class="text-lg font-medium mb-3">Install All Foundation Components</h3>
-							<code class="block bg-muted p-3 rounded text-sm font-mono">
-								npx shadcn-svelte@latest add {registryBaseUrl}/r/badge.json {registryBaseUrl}/r/button.json {registryBaseUrl}/r/card.json {registryBaseUrl}/r/input.json
-							</code>
-						</div>
-
-						<div>
-							<h3 class="text-lg font-medium mb-3">Usage Examples</h3>
-							<div class="space-y-4">
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Import and use Badge:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										import &#123; Badge, badgeVariants &#125; from '$lib/components/ui/badge';<br/>
-										<br/>
-										&lt;Badge variant="default"&gt;Status&lt;/Badge&gt;<br/>
-										&lt;Badge variant="outline"&gt;Tag&lt;/Badge&gt;<br/>
-										&lt;a href="/link" class=&#123;badgeVariants(&#123; variant: "outline" &#125;)&#125;&gt;Link Badge&lt;/a&gt;
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Import and use Button:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										import &#123; Button &#125; from '$lib/components/ui/button';<br/>
-										<br/>
-										&lt;Button variant="default"&gt;Click me&lt;/Button&gt;<br/>
-										&lt;Button variant="outline" size="sm"&gt;Small outline&lt;/Button&gt;
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Import and use Card:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										import &#123; Card, CardHeader, CardTitle, CardContent &#125; from '$lib/components/ui/card';<br/>
-										<br/>
-										&lt;Card&gt;<br/>
-										&nbsp;&nbsp;&lt;CardHeader&gt;<br/>
-										&nbsp;&nbsp;&nbsp;&nbsp;&lt;CardTitle&gt;Title&lt;/CardTitle&gt;<br/>
-										&nbsp;&nbsp;&lt;/CardHeader&gt;<br/>
-										&nbsp;&nbsp;&lt;CardContent&gt;Content&lt;/CardContent&gt;<br/>
-										&lt;/Card&gt;
-									</code>
-								</div>
-								<div>
-									<p class="text-sm text-muted-foreground mb-2">Import and use Input:</p>
-									<code class="block bg-muted p-3 rounded text-sm font-mono">
-										import &#123; Input, Label &#125; from '$lib/components/ui/input';<br/>
-										<br/>
-										&lt;Label for_="email"&gt;Email&lt;/Label&gt;<br/>
-										&lt;Input id="email" type="email" placeholder="Enter email" /&gt;
-									</code>
-								</div>
-							</div>
-						</div>
-					</CardContent>
-				</Card>
-			</section>
 		</div>
 	</div>
 </div>

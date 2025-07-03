@@ -5,7 +5,8 @@
   "description": "A versatile button component with multiple variants, sizes, and states. Based on shadcn-svelte Button component: https://www.shadcn-svelte.com/docs/components/button",
   "dependencies": [
     "tailwind-variants",
-    "clsx"
+    "clsx",
+    "@lucide/svelte"
   ],
   "files": [
     {

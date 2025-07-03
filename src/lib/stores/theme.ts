@@ -10,7 +10,11 @@ export const themes = [
 	{ id: 'twitter', name: 'Twitter', description: 'Twitter-inspired blue theme with rounded corners' },
 	{ id: 'bubblegum', name: 'Bubblegum', description: 'Playful pink and pastel theme' },
 	{ id: 'catppuccin', name: 'Catppuccin', description: 'Soothing pastel theme with purple accents' },
-	{ id: 'graphite', name: 'Graphite', description: 'Sleek monochromatic gray theme' }
+	{ id: 'graphite', name: 'Graphite', description: 'Sleek monochromatic gray theme' },
+	{ id: 'zinc', name: 'Zinc', description: 'Neutral zinc gray theme with subtle accents' },
+	{ id: 'slate', name: 'Slate', description: 'Cool slate blue-gray theme with crisp edges' },
+	{ id: 'rose', name: 'Rose', description: 'Warm rose theme with elegant pink accents' },
+	{ id: 'emerald', name: 'Emerald', description: 'Fresh emerald green theme with vibrant accents' }
 ];
 
 // Theme store

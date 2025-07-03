@@ -1,0 +1,46 @@
+{
+  "$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "Displays the path to the current resource using a hierarchy of links.",
+  "dependencies": ["@lucide/svelte"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "ui/breadcrumb/BreadcrumbRoot.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<nav\n\taria-label=\"breadcrumb\"\n\tclass={cn(\"\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</nav>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/BreadcrumbList.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<ol\n\tclass={cn(\n\t\t\"flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5\",\n\t\tclassName\n\t)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</ol>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/BreadcrumbItem.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<li\n\tclass={cn(\"inline-flex items-center gap-1.5\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</li>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/BreadcrumbLink.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\thref: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\thref,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<a\n\t{href}\n\tclass={cn(\"transition-colors hover:text-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</a>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/BreadcrumbPage.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<span\n\trole=\"link\"\n\taria-disabled=\"true\"\n\taria-current=\"page\"\n\tclass={cn(\"font-normal text-foreground\", className)}\n\t{...restProps}\n>\n\t{@render children?.()}\n</span>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/BreadcrumbSeparator.svelte",
+      "content": "<script lang=\"ts\">\n\timport { cn } from \"$lib/utils.js\";\n\timport ChevronRightIcon from \"@lucide/svelte/icons/chevron-right\";\n\n\ttype $$Props = {\n\t\tclass?: string;\n\t\tchildren?: any;\n\t};\n\n\tlet {\n\t\tclass: className,\n\t\tchildren,\n\t\t...restProps\n\t}: $$Props = $props();\n</script>\n\n<li\n\trole=\"presentation\"\n\taria-hidden=\"true\"\n\tclass={cn(\"[&>svg]:size-3.5\", className)}\n\t{...restProps}\n>\n\t{#if children}\n\t\t{@render children()}\n\t{:else}\n\t\t<ChevronRightIcon />\n\t{/if}\n</li>",
+      "type": "registry:ui"
+    },
+    {
+      "path": "ui/breadcrumb/index.ts",
+      "content": "import Root from \"./BreadcrumbRoot.svelte\";\nimport List from \"./BreadcrumbList.svelte\";\nimport Item from \"./BreadcrumbItem.svelte\";\nimport Link from \"./BreadcrumbLink.svelte\";\nimport Page from \"./BreadcrumbPage.svelte\";\nimport Separator from \"./BreadcrumbSeparator.svelte\";\n\nexport {\n\tRoot,\n\tList,\n\tItem,\n\tLink,\n\tPage,\n\tSeparator,\n\t//\n\tRoot as Breadcrumb,\n\tList as BreadcrumbList,\n\tItem as BreadcrumbItem,\n\tLink as BreadcrumbLink,\n\tPage as BreadcrumbPage,\n\tSeparator as BreadcrumbSeparator,\n};",
+      "type": "registry:ui"
+    }
+  ]
+}

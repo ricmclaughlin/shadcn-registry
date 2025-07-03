@@ -12,6 +12,18 @@
   },
   "items": [
     {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "A flexible alert component for displaying important messages with icon support.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/alert.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
@@ -19,6 +31,18 @@
       "files": [
         {
           "path": "src/lib/registry/components/badge.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/breadcrumb.json",
           "type": "registry:ui"
         }
       ]
@@ -55,6 +79,30 @@
       "files": [
         {
           "path": "src/lib/registry/components/input.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "mode-toggle",
+      "type": "registry:ui",
+      "title": "Mode Toggle",
+      "description": "A toggle component for switching between light and dark modes with smooth animations.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/mode-toggle.json",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "files": [
+        {
+          "path": "src/lib/registry/components/tabs.json",
           "type": "registry:ui"
         }
       ]

@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { tv, type VariantProps } from 'tailwind-variants';
 	import { cn } from '$lib/utils';
+	import type { ComponentType } from 'svelte';
 
 	const buttonVariants = tv({
 		base: 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -36,6 +37,10 @@
 	export let loading: boolean = false;
 	export let href: string | undefined = undefined;
 	export let type: 'button' | 'submit' | 'reset' = 'button';
+	
+	// Icon support with deep import pattern
+	export let icon: ComponentType | undefined = undefined;
+	export let iconPlacement: 'left' | 'right' = 'left';
 
 	// Additional classes
 	let className: string = '';
@@ -43,6 +48,8 @@
 
 	$: isLink = href !== undefined;
 	$: isDisabled = disabled || loading;
+	$: hasIcon = icon !== undefined;
+	$: isIconOnly = hasIcon && size === 'icon';
 </script>
 
 {#if isLink}
@@ -55,7 +62,7 @@
 	>
 		{#if loading}
 			<svg
-				class="mr-2 h-4 w-4 animate-spin"
+				class={cn("h-4 w-4 animate-spin", !isIconOnly && "mr-2")}
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -74,8 +81,17 @@
 					d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 				/>
 			</svg>
+		{:else if hasIcon && iconPlacement === 'left'}
+			<svelte:component this={icon} class={cn("h-4 w-4", !isIconOnly && "mr-2")} />
 		{/if}
-		<slot />
+		
+		{#if !isIconOnly}
+			<slot />
+		{/if}
+		
+		{#if hasIcon && iconPlacement === 'right' && !loading}
+			<svelte:component this={icon} class={cn("h-4 w-4", !isIconOnly && "ml-2")} />
+		{/if}
 	</a>
 {:else}
 	<button
@@ -87,7 +103,7 @@
 	>
 		{#if loading}
 			<svg
-				class="mr-2 h-4 w-4 animate-spin"
+				class={cn("h-4 w-4 animate-spin", !isIconOnly && "mr-2")}
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -106,7 +122,16 @@
 					d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 				/>
 			</svg>
+		{:else if hasIcon && iconPlacement === 'left'}
+			<svelte:component this={icon} class={cn("h-4 w-4", !isIconOnly && "mr-2")} />
 		{/if}
-		<slot />
+		
+		{#if !isIconOnly}
+			<slot />
+		{/if}
+		
+		{#if hasIcon && iconPlacement === 'right' && !loading}
+			<svelte:component this={icon} class={cn("h-4 w-4", !isIconOnly && "ml-2")} />
+		{/if}
 	</button>
 {/if}
